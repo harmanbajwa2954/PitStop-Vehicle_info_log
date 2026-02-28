@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto p-6">
+    <h2 class="text-3xl font-black italic text-white uppercase tracking-wider mb-8">Virtual Garage</h2>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <div class="bg-cardBg p-6 rounded-lg shadow-lg border border-gray-800 h-fit">
+            <h3 class="text-xl font-bold text-racingRed uppercase mb-4 border-b border-gray-800 pb-2">Register Asset</h3>
+            <form action="/add_vehicle" method="POST" class="flex flex-col gap-4">
+                <div>
+                    <label class="block text-xs uppercase text-gray-500 tracking-wider mb-1">Maker</label>
+                    <input type="text" name="make" placeholder="e.g., Maruti Suzuki" class="w-full bg-darkBg border border-gray-700 p-3 rounded text-white focus:outline-none focus:border-neonBlue transition" required>
+                </div>
+                <div>
+                    <label class="block text-xs uppercase text-gray-500 tracking-wider mb-1">Model</label>
+                    <input type="text" name="model" placeholder="e.g., Swift ZXi" class="w-full bg-darkBg border border-gray-700 p-3 rounded text-white focus:outline-none focus:border-neonBlue transition" required>
+                </div>
+                <div>
+                    <label class="block text-xs uppercase text-gray-500 tracking-wider mb-1">Year</label>
+                    <input type="number" name="year" placeholder="e.g., 2017" class="w-full bg-darkBg border border-gray-700 p-3 rounded text-white focus:outline-none focus:border-neonBlue transition" required>
+                </div>
+                <button type="submit" class="w-full bg-gray-800 hover:bg-neonBlue hover:text-darkBg text-white font-bold py-3 rounded uppercase tracking-wide transition mt-2">
+                    Initialize Vehicle
+                </button>
+            </form>
+        </div>
+
+        <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {% for v in vehicles %}
+            <div class="bg-darkBg border border-gray-700 p-6 rounded-lg relative overflow-hidden group hover:border-racingRed transition shadow-lg">
+                <div class="absolute top-0 right-0 bg-gray-800 text-xs px-3 py-1 rounded-bl-lg text-gray-400 font-bold">ID: {{ v.id }}</div>
+                <h4 class="text-2xl font-black text-white italic uppercase">{{ v.model }}</h4>
+                <p class="text-neonBlue tracking-widest uppercase text-sm font-bold mb-4">{{ v.make }} // {{ v.year }}</p>
+                <div class="flex gap-2">
+                    <span class="bg-gray-800 text-gray-300 text-xs px-2 py-1 rounded">Active Status</span>
+                </div>
+                <div>
+                    <img src="{{ url_for('static', filename='assets/car.png') }}" alt="{{ v.model }}" class="w-full mt-4 opacity-80">
+                </div>
+                <div class="absolute inset-0 bg-racingRed/10 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                    <a href="/dashboard?vehicle_id={{ v.id }}" class="bg-racingRed text-white px-4 py-2 rounded font-bold uppercase tracking-wide hover:bg-red-600 transition shadow-[0_0_10px_rgba(255,0,60,0.4)]">
+                        View Dashboard
+                    </a>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-span-2 bg-darkBg border border-gray-800 p-8 rounded-lg flex flex-col items-center justify-center text-gray-500">
+                <svg class="w-16 h-16 mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <p class="italic">Garage is currently empty. Add your first vehicle.</p>
+                <p class="text-sm mt-2 opacity-75">Try adding a daily commuter like a Hero Splendor.</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
