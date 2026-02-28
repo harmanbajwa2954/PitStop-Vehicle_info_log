@@ -1,6 +1,35 @@
-h1{
-    color: blueviolet;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    open 
+/* Custom component utilities */
+.nav-link {
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #00f0ff;
+}
+
+.card {
+  background-color: #1e1e1e;
+  border: 1px solid #2d2d2d;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+
+
+/* Custom color classes */
+.text-neon-blue {
+  color: #00f0ff;
+}
+
+.text-racing-red {
+  color: #ff003c;
+}
+
+.bg-dark-bg {
+  background-color: #121212;
+}
+
+.bg-card {
+  background-color: #1e1e1e;
 }
 
