@@ -26,12 +26,17 @@
 </head>
 
 <body class="bg-darkBg text-gray-200 font-sans antialiased">
-    <nav class="p-4 border-b border-gray-800 flex justify-between items-center">
+    <nav class="p-4 border-b border-gray-800 flex justify-between items-center px-6 max-w-7xl mx-auto">
         <a href="/" class="text-2xl font-black italic tracking-wider text-racingRed">🏁 PITSTOP</a>
         <div class="space-x-6">
             <a href="/dashboard" class="hover:text-neonBlue transition">Dashboard</a>
             <a href="/garage" class="hover:text-neonBlue transition">Garage</a>
+            <a href="/login"
+                class="px-4 py-2 bg-racingRed text-white font-bold rounded shadow-[0_0_15px_rgba(255,0,60,0.5)] hover:scale-105 transition transform uppercase tracking-wide">
+                Login
+            </a>
         </div>
+        
     </nav>
     <main class="min-h-screen">
         {% block content %}{% endblock %}

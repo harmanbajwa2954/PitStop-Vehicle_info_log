@@ -10,6 +10,16 @@
             <h3 class="text-xl font-bold text-racingRed uppercase mb-4 border-b border-gray-800 pb-2">Register Asset</h3>
             <form action="/add_vehicle" method="POST" class="flex flex-col gap-4">
                 <div>
+                    <label class="block text-xs uppercase text-gray-500 tracking-wider mb-1">Type</label>
+                    <select name="type" class="w-full bg-darkBg border border-gray-700 p-3 rounded text-white focus:outline-none focus:border-neonBlue transition appearance-none " required>
+                        <option value="" disabled selected>Select...</option>
+                        <option value="car">Car</option>
+                        <option value="bike">Bike</option>
+                        <option value="scooter">Scooter</option>
+                        <option value="truck">Truck</option>
+                    </select>
+                </div>
+                <div>
                     <label class="block text-xs uppercase text-gray-500 tracking-wider mb-1">Maker</label>
                     <input type="text" name="make" placeholder="e.g., Maruti Suzuki" class="w-full bg-darkBg border border-gray-700 p-3 rounded text-white focus:outline-none focus:border-neonBlue transition" required>
                 </div>
@@ -37,8 +47,10 @@
                     <span class="bg-gray-800 text-gray-300 text-xs px-2 py-1 rounded">Active Status</span>
                 </div>
                 <div>
-                    <img src="{{ url_for('static', filename='assets/car.png') }}" alt="{{ v.model }}" class="w-full mt-4 opacity-80">
+                    <img src="{{ url_for('static', filename='assets/' + v.type + '.png') }}" alt="{{ v.type }}" class="w-full mt-4 opacity-80">
                 </div>
+
+                
                 <div class="absolute inset-0 bg-racingRed/10 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                     <a href="/dashboard?vehicle_id={{ v.id }}" class="bg-racingRed text-white px-4 py-2 rounded font-bold uppercase tracking-wide hover:bg-red-600 transition shadow-[0_0_10px_rgba(255,0,60,0.4)]">
                         View Dashboard
